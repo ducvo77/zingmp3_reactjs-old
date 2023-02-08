@@ -1,0 +1,32 @@
+@import "normalize.css";
+
+@font-face {
+  font-family: Inter;
+  src: url("/assets/fonts/Inter_400.woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/assets/fonts/Inter_500.woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Inter;
+  src: url("/assets/fonts/Inter_600.woff2");
+  font-weight: 600;
+}
+
+:root {
+  --font-family-primary: "Inter";
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(---font-family-primary), sans-serif;
+  font-size: 1.6rem;
+}
