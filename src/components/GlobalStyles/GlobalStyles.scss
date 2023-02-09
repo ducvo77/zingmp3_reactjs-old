@@ -305,6 +305,10 @@
   --font-family-primary: "Inter";
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -312,4 +316,8 @@ html {
 body {
   font-family: var(--font-family-primary), sans-serif;
   font-size: 1.6rem;
+}
+
+li {
+  list-style: none;
 }
