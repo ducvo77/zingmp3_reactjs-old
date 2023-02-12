@@ -303,10 +303,34 @@
 
 :root {
   --font-family-primary: "Inter";
+  --layout-bg: #170f23;
+  --layout-header-bg: rgba(23, 15, 35, 0.8);
+  --text-primary: #fff;
+  --alpha-bg: hsla(0, 0%, 100%, 0.1);
+  --search-text: #eee;
+  --link-text-hover: #c273ed;
+  --purple-primary: #9b4de0;
+  --primary-bg: #34224f;
+  --text-placeholder: #dadada;
+  --navigation-text: #dadada;
+  --text-secondary: hsla(0, 0%, 100%, 0.5);
+  --border-primary: hsla(0, 0%, 100%, 0.1);
+  // --player-bg: #130c1c;
+  // --sidebar-popup-bg: #2a213a;
+  // --primary-bg: #34224f;
+  // --background-tooltip: #e8e8e8;
+  // --hover-tooltip-opacity: hsla(0, 0%, 100%, 0.3);
+  // --linear-gradient-bg: linear-gradient(180deg, #740091, #2d1a4c);
+  // --padding-section: 59px;
+  // --purple-primary: #9b4de0;
+  // --link-text-hover: #c273ed;
 }
 
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-primary), sans-serif;
 }
 
 html {
@@ -314,12 +338,29 @@ html {
 }
 
 body {
-  font-family: var(--font-family-primary), sans-serif;
   font-size: 1.6rem;
-  margin: 0;
-  padding: 0;
 }
 
 li {
   list-style: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+input {
+  outline: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+// code Tippy
+.tippy-box {
+  font-size: 1.1rem !important;
+  line-height: 1.3 !important;
 }

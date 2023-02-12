@@ -1,0 +1,61 @@
+.wrapper {
+  align-items: center;
+  overflow: hidden;
+  padding: 8px 10px;
+  display: flex;
+  text-align: left;
+  padding: 10px;
+  border-radius: 5px;
+  user-select: none;
+  position: relative;
+  &:hover {
+    background-color: var(--alpha-bg);
+  }
+}
+
+.media-left {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-right: 10px;
+  width: 52px;
+  height: 52px;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.media-content {
+}
+
+.title {
+  width: 100%;
+  font-size: 1.4rem;
+  margin: 0;
+  text-transform: none;
+  font-weight: 500;
+  vertical-align: top;
+  color: var(--text-primary);
+}
+
+.sub-title {
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+.media-right {
+  position: absolute;
+  right: 20px;
+}
+
+.icon-heart {
+  font-size: 1.6rem;
+  margin-right: 32px;
+  cursor: pointer;
+}
+
+.icon-more {
+  cursor: pointer;
+  font-size: 1.6rem;
+}

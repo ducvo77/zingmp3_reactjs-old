@@ -1,8 +1,10 @@
 .wrapper {
-  display: flex;
   width: 100%;
+  display: flex;
 }
 
 .container {
   width: calc(100% - 240px);
+  position: relative;
+  color: #fff;
 }
