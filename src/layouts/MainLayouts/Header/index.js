@@ -6,6 +6,7 @@ import Tippy from "@tippyjs/react/headless";
 
 import styles from "./Header.module.scss";
 import {
+  faAngleRight,
   faArrowLeftLong,
   faArrowRightLong,
   faBan,
@@ -33,11 +34,13 @@ function Header() {
     {
       title: "Danh sách chặn",
       icon: <FontAwesomeIcon icon={faBan} />,
+
       children: false,
     },
     {
       title: "Chất lượng nhạc",
       icon: <FontAwesomeIcon icon={faBan} />,
+      icon_sub: <FontAwesomeIcon icon={faAngleRight} />,
       children: [
         {
           title: "SQ * 180",
@@ -55,6 +58,7 @@ function Header() {
     {
       title: "Giao diện",
       icon: <FontAwesomeIcon icon={faCirclePlay} />,
+      icon_sub: <FontAwesomeIcon icon={faAngleRight} />,
       children: [
         {
           content: "Luôn phát nhạc toàn màn hình",
@@ -99,40 +103,39 @@ function Header() {
           <FontAwesomeIcon icon={faArrowRightLong} />
         </Button>
 
-        <Tippy
-          visible
-          interactive
-          trigger="click"
-          render={(attrs) => (
-            <div className="box" tabIndex="-1" {...attrs}>
-              <Popper search>
-                <h5>Đề xuất cho bạn</h5>
-                <Accounts />
-                <Accounts />
-                <Accounts />
-                <Accounts />
-              </Popper>
-            </div>
-          )}
-        >
-          <div className={cx("search")}>
-            <Button
-              leftIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
-              className={cx("search-btn")}
-            ></Button>
+        <div className={cx("search")}>
+          <Button
+            leftIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
+            className={cx("search-btn")}
+          ></Button>
 
+          <Tippy
+            hideOnClick
+            interactive
+            trigger="focus"
+            render={(attrs) => (
+              <div className="box" tabIndex="-1" {...attrs}>
+                <Popper search>
+                  <h5>Đề xuất cho bạn</h5>
+                  <Accounts />
+                  <Accounts />
+                  <Accounts />
+                  <Accounts />
+                </Popper>
+              </div>
+            )}
+          >
             <input
               className={cx("search-input")}
               type="text"
               placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
             />
-
-            <Button
-              rightIcon={<FontAwesomeIcon icon={faX} />}
-              className={cx("clear-btn")}
-            ></Button>
-          </div>
-        </Tippy>
+          </Tippy>
+          <Button
+            rightIcon={<FontAwesomeIcon icon={faX} />}
+            className={cx("clear-btn")}
+          ></Button>
+        </div>
       </div>
       <div className={cx("level-right")}>
         <Button
@@ -164,13 +167,19 @@ function Header() {
           interactive
           render={(attrs) => (
             <div className={cx("menu-options")} tabIndex="-1" {...attrs}>
-              <Popper>
+              <Popper menu>
                 <div className={cx("menu-container")}>
                   <div className={cx("container-menu-top")}>
                     {MENU_LIST_TOP.map((list) => (
                       <button className={cx("menu-option", "menu-top")}>
                         <span className={cx("menu-icon")}>{list.icon}</span>
                         <span className={cx("menu-title")}>{list.title}</span>
+                        {list.icon_sub && (
+                          <span className={cx("menu-icon-sub")}>
+                            {list.icon_sub}
+                          </span>
+                        )}
+
                         <div className={cx("menu-hover-container")}>
                           {list.children &&
                             list.children.map((children) => (
@@ -191,9 +200,20 @@ function Header() {
                                   </div>
                                 )}
                                 {children.content && (
-                                  <span className={cx("content-hover")}>
-                                    {children.content}
-                                  </span>
+                                  <div
+                                    className={cx("container-content-hover")}
+                                  >
+                                    <span className={cx("content-hover")}>
+                                      {children.content}
+                                    </span>
+                                    <span
+                                      className={cx("container-btn-start", {
+                                        active: true,
+                                      })}
+                                    >
+                                      {/* <div className={cx("circle")}></div> */}
+                                    </span>
+                                  </div>
                                 )}
                               </button>
                             ))}
