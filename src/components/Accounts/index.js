@@ -23,7 +23,7 @@ function Accounts() {
         <button className={cx("play-btn")}>
           <FontAwesomeIcon icon={faPlay} />
         </button>
-        <div class={cx("opacity")}></div>
+        <div className={cx("opacity")}></div>
       </div>
       <div className={cx("content")}>
         <h4 className={cx("title")}>Simple Love</h4>

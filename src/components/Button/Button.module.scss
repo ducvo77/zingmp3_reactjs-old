@@ -51,8 +51,62 @@
   background-color: var(--alpha-bg);
   border-radius: 999px;
   color: #fff;
-  cursor: pointer;
   &:hover {
     opacity: 0.9;
   }
+}
+
+.sidebar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  padding: 8px 25px;
+  color: var(--navigation-text);
+  border-left: 3px solid transparent;
+
+  &:hover {
+    color: #fff;
+  }
+
+  .icon-right {
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    padding: 0 !important;
+    border-radius: 999px;
+    position: absolute;
+    right: 20px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+  }
+
+  &:hover .icon-right {
+    display: flex;
+  }
+}
+
+.icon {
+  font-size: 1.6rem;
+}
+
+.icon-left {
+  margin-right: 10px;
+}
+
+.stickySidebar {
+  position: fixed;
+  width: 240px;
+  left: 0;
+  height: 54px;
+  border-top: 1px solid var(--border-primary);
+  padding: 0 28px;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  color: var(--text-primary);
+  font-weight: 700;
+  bottom: 0;
 }

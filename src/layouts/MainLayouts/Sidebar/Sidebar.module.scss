@@ -1,7 +1,50 @@
 .wrapper {
   width: 240px;
-  height: calc(100vh - 90px);
-  background-color: #333;
-  padding-top: 70px;
-  padding-bottom: 54px;
+  height: 100vh;
+  background-color: var(--sidebar-bg);
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+}
+
+.main {
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%;
+  .logo {
+    padding: 0 25px 0 28px;
+    width: 240px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    img {
+      width: 120px;
+      height: 40px;
+    }
+  }
+}
+
+.sidebar-divide {
+  position: relative;
+  height: 1px;
+  &::after {
+    content: "";
+    border-top: 1px solid var(--border-primary);
+    position: absolute;
+    left: 25px;
+    right: 25px;
+    top: 0;
+  }
+}
+
+.sub {
+  margin-top: 15px;
+}
+
+.container {
+  display: flex;
+  align-items: start;
+  flex-direction: column;
 }

@@ -26,6 +26,8 @@ import {
 import Button from "~/components/Button";
 import Popper from "~/components/Popper";
 import Accounts from "~/components/Accounts";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
@@ -92,14 +94,32 @@ function Header() {
       icon: <FontAwesomeIcon icon={faShieldHalved} />,
     },
   ];
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  const [backDisabled, setBackDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(true);
+
+  // useEffect(() => {});
+
+  const handleClickBack = () => {};
+
+  const handleClickNext = () => {};
 
   return (
     <div className={cx("wrapper")}>
       <div className={cx("level-left")}>
-        <Button disabled={true} className={cx("arrow")}>
+        <Button
+          disabled={backDisabled}
+          onClick={handleClickBack}
+          className={cx("arrow")}
+        >
           <FontAwesomeIcon icon={faArrowLeftLong} />
         </Button>
-        <Button className={cx("arrow")}>
+        <Button
+          disabled={nextDisabled}
+          onClick={handleClickNext}
+          className={cx("arrow")}
+        >
           <FontAwesomeIcon icon={faArrowRightLong} />
         </Button>
 
@@ -108,29 +128,30 @@ function Header() {
             leftIcon={<FontAwesomeIcon icon={faMagnifyingGlass} />}
             className={cx("search-btn")}
           ></Button>
-
-          <Tippy
-            hideOnClick
-            interactive
-            trigger="focus"
-            render={(attrs) => (
-              <div className="box" tabIndex="-1" {...attrs}>
-                <Popper search>
-                  <h5>Đề xuất cho bạn</h5>
-                  <Accounts />
-                  <Accounts />
-                  <Accounts />
-                  <Accounts />
-                </Popper>
-              </div>
-            )}
-          >
-            <input
-              className={cx("search-input")}
-              type="text"
-              placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
-            />
-          </Tippy>
+          <div style={{ width: "100%" }}>
+            <Tippy
+              hideOnClick
+              interactive
+              trigger="focus"
+              render={(attrs) => (
+                <div className="box" tabIndex="-1" {...attrs}>
+                  <Popper search>
+                    <h5>Đề xuất cho bạn</h5>
+                    <Accounts />
+                    <Accounts />
+                    <Accounts />
+                    <Accounts />
+                  </Popper>
+                </div>
+              )}
+            >
+              <input
+                className={cx("search-input")}
+                type="text"
+                placeholder="Tìm kiếm bài hát, nghệ sĩ, lời bài hát..."
+              />
+            </Tippy>
+          </div>
           <Button
             rightIcon={<FontAwesomeIcon icon={faX} />}
             className={cx("clear-btn")}
@@ -170,8 +191,8 @@ function Header() {
               <Popper menu>
                 <div className={cx("menu-container")}>
                   <div className={cx("container-menu-top")}>
-                    {MENU_LIST_TOP.map((list) => (
-                      <button className={cx("menu-option", "menu-top")}>
+                    {MENU_LIST_TOP.map((list, idx) => (
+                      <div key={idx} className={cx("menu-option", "menu-top")}>
                         <span className={cx("menu-icon")}>{list.icon}</span>
                         <span className={cx("menu-title")}>{list.title}</span>
                         {list.icon_sub && (
@@ -182,8 +203,9 @@ function Header() {
 
                         <div className={cx("menu-hover-container")}>
                           {list.children &&
-                            list.children.map((children) => (
+                            list.children.map((children, idx) => (
                               <button
+                                key={idx}
                                 className={cx(
                                   "menu-hover-option",
                                   "menu-option"
@@ -218,15 +240,18 @@ function Header() {
                               </button>
                             ))}
                         </div>
-                      </button>
+                      </div>
                     ))}
                   </div>
 
                   <div className={cx("dash")}></div>
 
                   <div className={cx("container-menu-bottom")}>
-                    {MENU_LIST_BOTTOM.map((list) => (
-                      <button className={cx("menu-option", "menu-bottom")}>
+                    {MENU_LIST_BOTTOM.map((list, idx) => (
+                      <button
+                        key={idx}
+                        className={cx("menu-option", "menu-bottom")}
+                      >
                         <span className={cx("menu-icon")}>{list.icon}</span>
                         <span className={cx("menu-title")}>{list.title}</span>
                       </button>

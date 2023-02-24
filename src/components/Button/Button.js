@@ -16,7 +16,10 @@ function Button({
   rightIcon,
   onClick,
   disabled,
+  stickySidebar,
   hided,
+  sidebar,
+
   ...passProps
 }) {
   let Tag = "button";
@@ -41,13 +44,17 @@ function Button({
   const classes = cx("wrapper", {
     [className]: className,
     disabled,
+    sidebar,
+    stickySidebar,
   });
 
   return (
     <Tag className={classes} {...props}>
-      {leftIcon && <span className={cx("icon")}>{leftIcon}</span>}
+      {leftIcon && <span className={cx("icon", "icon-left")}>{leftIcon}</span>}
       <span className={cx("title")}>{children}</span>
-      {rightIcon && <span className={cx("icon")}>{rightIcon}</span>}
+      {rightIcon && (
+        <span className={cx("icon", "icon-right")}>{rightIcon}</span>
+      )}
     </Tag>
   );
 }

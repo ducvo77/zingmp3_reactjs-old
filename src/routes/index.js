@@ -10,7 +10,7 @@ import Mv from "~/pages/Mv";
 //Public Routes
 const publicRoutes = [
   {
-    path: "/",
+    path: "/*",
     compenent: Home,
   },
   {
