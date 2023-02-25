@@ -23,77 +23,17 @@ import {
   faShirt,
   faX,
 } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
 import Button from "~/components/Button";
 import Popper from "~/components/Popper";
 import Accounts from "~/components/Accounts";
-import { useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import MENU_LIST from "~/untils/menu";
 
 const cx = classNames.bind(styles);
 
 function Header() {
-  const MENU_LIST_TOP = [
-    {
-      title: "Danh sách chặn",
-      icon: <FontAwesomeIcon icon={faBan} />,
-
-      children: false,
-    },
-    {
-      title: "Chất lượng nhạc",
-      icon: <FontAwesomeIcon icon={faBan} />,
-      icon_sub: <FontAwesomeIcon icon={faAngleRight} />,
-      children: [
-        {
-          title: "SQ * 180",
-          icon: <FontAwesomeIcon icon={faBan} />,
-          description: "Giảm sử dụng dữ liệu cho các kết nối chậm hơn",
-        },
-        {
-          title: "HQ * 320",
-          icon: <FontAwesomeIcon icon={faBan} />,
-          description:
-            "Kết hợp tốt nhất giữa việc sử dụng dữ liệu và chất lượng âm thanh",
-        },
-      ],
-    },
-    {
-      title: "Giao diện",
-      icon: <FontAwesomeIcon icon={faCirclePlay} />,
-      icon_sub: <FontAwesomeIcon icon={faAngleRight} />,
-      children: [
-        {
-          content: "Luôn phát nhạc toàn màn hình",
-        },
-        {
-          content: "Hiệu ứng",
-        },
-      ],
-    },
-  ];
-
-  const MENU_LIST_BOTTOM = [
-    {
-      title: "Giới thiệu",
-      icon: <FontAwesomeIcon icon={faCircleInfo} />,
-    },
-    {
-      title: "Liên hệ",
-      icon: <FontAwesomeIcon icon={faPhone} />,
-    },
-    {
-      title: "Quảng cáo",
-      icon: <FontAwesomeIcon icon={faRectangleAd} />,
-    },
-    {
-      title: "Thỏa thuận sử dụng",
-      icon: <FontAwesomeIcon icon={faFileLines} />,
-    },
-    {
-      title: "Chính sách bảo mật",
-      icon: <FontAwesomeIcon icon={faShieldHalved} />,
-    },
-  ];
   // const navigate = useNavigate();
   // const location = useLocation();
   const [backDisabled, setBackDisabled] = useState(true);
@@ -181,94 +121,116 @@ function Header() {
             <FontAwesomeIcon icon={faGem} />
           </a>
         </TippyTollTip>
+        <div>
+          <Tippy
+            trigger="click"
+            hideOnClick
+            interactive
+            render={(attrs) => (
+              <div className={cx("menu-options")} tabIndex="-1" {...attrs}>
+                <Popper menu>
+                  <div className={cx("menu-container")}>
+                    <div className={cx("container-menu-top")}>
+                      {MENU_LIST.map(
+                        (list, idx) =>
+                          list.top && (
+                            <div
+                              key={idx}
+                              className={cx("menu-option", "menu-top")}
+                            >
+                              <span className={cx("menu-icon")}>
+                                {list.icon}
+                              </span>
+                              <span className={cx("menu-title")}>
+                                {list.title}
+                              </span>
+                              {list.icon_sub && (
+                                <span className={cx("menu-icon-sub")}>
+                                  {list.icon_sub}
+                                </span>
+                              )}
 
-        <Tippy
-          trigger="click"
-          hideOnClick
-          interactive
-          render={(attrs) => (
-            <div className={cx("menu-options")} tabIndex="-1" {...attrs}>
-              <Popper menu>
-                <div className={cx("menu-container")}>
-                  <div className={cx("container-menu-top")}>
-                    {MENU_LIST_TOP.map((list, idx) => (
-                      <div key={idx} className={cx("menu-option", "menu-top")}>
-                        <span className={cx("menu-icon")}>{list.icon}</span>
-                        <span className={cx("menu-title")}>{list.title}</span>
-                        {list.icon_sub && (
-                          <span className={cx("menu-icon-sub")}>
-                            {list.icon_sub}
-                          </span>
-                        )}
-
-                        <div className={cx("menu-hover-container")}>
-                          {list.children &&
-                            list.children.map((children, idx) => (
-                              <button
-                                key={idx}
-                                className={cx(
-                                  "menu-hover-option",
-                                  "menu-option"
-                                )}
-                              >
-                                {children.title && (
-                                  <b className={cx("title-hover")}>
-                                    {children.title}
-                                  </b>
-                                )}
-                                {children.description && (
-                                  <div className={cx("description")}>
-                                    {children.description}
-                                  </div>
-                                )}
-                                {children.content && (
-                                  <div
-                                    className={cx("container-content-hover")}
-                                  >
-                                    <span className={cx("content-hover")}>
-                                      {children.content}
-                                    </span>
-                                    <span
-                                      className={cx("container-btn-start", {
-                                        active: true,
-                                      })}
+                              <div className={cx("menu-hover-container")}>
+                                {list.children &&
+                                  list.children.map((children, idx) => (
+                                    <button
+                                      key={idx}
+                                      className={cx(
+                                        "menu-hover-option",
+                                        "menu-option"
+                                      )}
                                     >
-                                      {/* <div className={cx("circle")}></div> */}
-                                    </span>
-                                  </div>
-                                )}
-                              </button>
-                            ))}
-                        </div>
-                      </div>
-                    ))}
+                                      {children.title && (
+                                        <b className={cx("title-hover")}>
+                                          {children.title}
+                                        </b>
+                                      )}
+                                      {children.description && (
+                                        <div className={cx("description")}>
+                                          {children.description}
+                                        </div>
+                                      )}
+                                      {children.content && (
+                                        <div
+                                          className={cx(
+                                            "container-content-hover"
+                                          )}
+                                        >
+                                          <span className={cx("content-hover")}>
+                                            {children.content}
+                                          </span>
+                                          <span
+                                            className={cx(
+                                              "container-btn-start",
+                                              {
+                                                active: true,
+                                              }
+                                            )}
+                                          >
+                                            {/* <div className={cx("circle")}></div> */}
+                                          </span>
+                                        </div>
+                                      )}
+                                    </button>
+                                  ))}
+                              </div>
+                            </div>
+                          )
+                      )}
+                    </div>
+
+                    <div className={cx("dash")}></div>
+
+                    <div className={cx("container-menu-bottom")}>
+                      {MENU_LIST.map(
+                        (list, idx) =>
+                          list.bottom && (
+                            <button
+                              key={idx}
+                              className={cx("menu-option", "menu-bottom")}
+                            >
+                              <span className={cx("menu-icon")}>
+                                {list.icon}
+                              </span>
+                              <span className={cx("menu-title")}>
+                                {list.title}
+                              </span>
+                            </button>
+                          )
+                      )}
+                    </div>
                   </div>
-
-                  <div className={cx("dash")}></div>
-
-                  <div className={cx("container-menu-bottom")}>
-                    {MENU_LIST_BOTTOM.map((list, idx) => (
-                      <button
-                        key={idx}
-                        className={cx("menu-option", "menu-bottom")}
-                      >
-                        <span className={cx("menu-icon")}>{list.icon}</span>
-                        <span className={cx("menu-title")}>{list.title}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </Popper>
-            </div>
-          )}
-        >
-          <TippyTollTip content="Cài đặt">
-            <button className={cx("setting-item")}>
-              <FontAwesomeIcon icon={faGear} />
-            </button>
-          </TippyTollTip>
-        </Tippy>
-
+                </Popper>
+              </div>
+            )}
+          >
+            <TippyTollTip content="Cài đặt">
+              <button className={cx("setting-item")}>
+                <FontAwesomeIcon icon={faGear} />
+              </button>
+            </TippyTollTip>
+          </Tippy>
+        </div>
         <div className={cx("login-container")}>
           <img
             src="https://avatar.talk.zdn.vn/default.jpg"

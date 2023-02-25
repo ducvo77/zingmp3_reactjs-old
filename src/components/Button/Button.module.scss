@@ -88,6 +88,10 @@
   }
 }
 
+.sidebar.active {
+  background-color: var(--alpha-bg);
+}
+
 .icon {
   font-size: 1.6rem;
 }

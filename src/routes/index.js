@@ -14,7 +14,7 @@ const publicRoutes = [
     compenent: Home,
   },
   {
-    path: "/zingchart",
+    path: "/zing-chart",
     compenent: Zingchart,
   },
   {
