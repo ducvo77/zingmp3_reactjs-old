@@ -1,0 +1,19 @@
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  background-color: var(--layout-bg);
+}
+
+.container {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  flex: 1;
+}
+
+.content {
+  margin-top: 70px;
+}
