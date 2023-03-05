@@ -34,6 +34,7 @@ import MENU_LIST from "~/untils/menu";
 const cx = classNames.bind(styles);
 
 function Header() {
+<<<<<<< HEAD
   const navigate = useNavigate();
   const location = useLocation();
   const [currentUrl, setCurrentUrl] = useState("");
@@ -72,6 +73,18 @@ function Header() {
   const handleClickNext = () => {
     navigate.length > 1 ? navigate(1) : setNextDisabled(true);
   };
+=======
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  const [backDisabled, setBackDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(true);
+
+  // useEffect(() => {});
+
+  const handleClickBack = () => {};
+
+  const handleClickNext = () => {};
+>>>>>>> origin/main
 
   return (
     <div className={cx("wrapper")}>
